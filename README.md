@@ -38,3 +38,76 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+#menu, #cart {
+    width: 45%;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.menu-item {
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+let cart = [];
+
+function addToCart(item) {
+    cart.push(item);
+    updateCartDisplay();
+}
+
+function updateCartDisplay() {
+    const cartItemsElement = document.getElementById('cart-items');
+    cartItemsElement.innerHTML = '';
+
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        cartItemsElement.appendChild(li);
+    });
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+    } else {
+        alert('Thank you for your order!');
+        cart = [];
+        updateCartDisplay();
+    }
+}
